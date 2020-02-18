@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.orange,
       ),
-      home: MyHomePage(title: 'When To Leave'),
+      home: MyHomePage(title: 'Home')
     );
   }
 }
@@ -66,10 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.cyan[100],
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title, textAlign: TextAlign.center),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -92,44 +93,55 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'When To Leave',
-              style: Theme.of(context).textTheme.display1,
+              'When To Leave\n',
+              style: Theme.of(context).textTheme.display2,
+              //style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Text(
-              '\n',
-              style: Theme.of(context).textTheme.display1,
-            ),
-            OutlineButton(
+            RaisedButton(
               onPressed:  ()  {
 
               },
               child: Text(
-                "My Schedule"
+                "My Schedule", style: TextStyle(
+                  //color: Colors.blueAccent
+              )
               ),
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              color: Colors.white,
+              highlightColor: Colors.orangeAccent,
             ),
-            OutlineButton(
+            RaisedButton(
               onPressed:  ()  {
 
               },
               child: Text(
                   "Add Items"
               ),
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              color: Colors.white,
+              highlightColor: Colors.orangeAccent,
             ),
-            OutlineButton(
+            RaisedButton(
               onPressed:  ()  {
 
               },
               child: Text(
                   "Remove Items"
               ),
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              color: Colors.white,
+              highlightColor: Colors.orangeAccent,
             ),
-            OutlineButton(
+            RaisedButton(
               onPressed:  ()  {
 
               },
               child: Text(
                   "Settings"
               ),
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              color: Colors.white,
+              highlightColor: Colors.orangeAccent,
             ),
           ],
         ),
