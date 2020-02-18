@@ -1,6 +1,6 @@
 # when_to_leave
 
-A new Flutter application.
+cs 4990 mobile app development project
 
 ## Getting Started
 
