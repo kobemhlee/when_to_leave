@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:when_to_leave/schedulescreen.dart';
+import 'package:when_to_leave/additemspage.dart';
+import 'package:when_to_leave/removeitemspage.dart';
+import 'package:when_to_leave/settingspage.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.g
-  // Testing. delete
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'When To Leave',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.orange,
       ),
       home: MyHomePage(title: 'Home')
@@ -55,6 +49,42 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void _goToScheduleScreen() {
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ScheduleScreen(title: 'My Schedule')),
+      );
+    });
+  }
+
+  void _goToAddItemsScreen() {
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AddItems(title: 'Add Items')),
+      );
+    });
+  }
+
+  void _goToRemoveItemsScreen() {
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => RemoveItems(title: 'Remove Items')),
+      );
+    });
+  }
+
+  void _goToSettingsScreen() {
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Settings(title: 'Settings')),
+      );
     });
   }
 
@@ -95,16 +125,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'When To Leave\n',
-              style: Theme.of(context).textTheme.display2,
-              //style: TextStyle(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.display3, // **style better later
             ),
             RaisedButton(
-              onPressed:  ()  {
-
-              },
+              onPressed: _goToScheduleScreen,
               child: Text(
                 "My Schedule", style: TextStyle(
-                  //color: Colors.blueAccent
+                  //color: Colors.orangeAccent,
               )
               ),
               shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
@@ -112,9 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
               highlightColor: Colors.orangeAccent,
             ),
             RaisedButton(
-              onPressed:  ()  {
-
-              },
+              onPressed: _goToAddItemsScreen,
               child: Text(
                   "Add Items"
               ),
@@ -123,9 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
               highlightColor: Colors.orangeAccent,
             ),
             RaisedButton(
-              onPressed:  ()  {
-
-              },
+              onPressed: _goToRemoveItemsScreen,
               child: Text(
                   "Remove Items"
               ),
@@ -134,9 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
               highlightColor: Colors.orangeAccent,
             ),
             RaisedButton(
-              onPressed:  ()  {
-
-              },
+              onPressed: _goToSettingsScreen,
               child: Text(
                   "Settings"
               ),
@@ -147,11 +168,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: _incrementCounter,
-//        tooltip: 'Increment',
-//        child: Icon(Icons.add),
-//      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
