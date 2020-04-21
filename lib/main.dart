@@ -3,19 +3,24 @@ import 'package:when_to_leave/schedulescreen.dart';
 import 'package:when_to_leave/additemspage.dart';
 import 'package:when_to_leave/removeitemspage.dart';
 import 'package:when_to_leave/settingspage.dart';
+import 'package:when_to_leave/style.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() => runApp(MyApp());
 
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.g
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'When To Leave',
       theme: ThemeData(
         primarySwatch: Colors.orange,
+        textTheme: TextTheme(title: AppBarTextStyle)
       ),
-      home: MyHomePage(title: 'Home')
+      home: (MyHomePage(title: 'Home'))
     );
   }
 }
@@ -39,24 +44,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   void _goToScheduleScreen() {
     setState(() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ScheduleScreen(title: 'My Schedule')),
+        MaterialPageRoute(builder: (context) => ScheduleScreen(title: 'Schedule')),
       );
     });
   }
@@ -65,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => AddItems(title: 'Add Items')),
+        MaterialPageRoute(builder: (context) => AddItems(title: '')),
       );
     });
   }
@@ -74,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => RemoveItems(title: 'Remove Items')),
+        MaterialPageRoute(builder: (context) => RemoveItems(title: 'Remove Events')),
       );
     });
   }
@@ -96,12 +88,21 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
     return Scaffold(
       backgroundColor: Colors.cyan[100],
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title, textAlign: TextAlign.center),
+        //title: Text(widget.title, textAlign: TextAlign.center),
+        actions: <Widget>[
+          IconButton(
+          icon: Icon(
+          Icons.home,
+
+          color: Colors.white,
+      ),
+          )],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -124,46 +125,74 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'When To Leave\n',
-              style: Theme.of(context).textTheme.display3, // **style better later
-            ),
-            RaisedButton(
-              onPressed: _goToScheduleScreen,
-              child: Text(
-                "My Schedule", style: TextStyle(
-                  //color: Colors.orangeAccent,
+              'When To Leave',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w500,
+                fontSize: 50, // 26
+                color: Colors.black,
               )
-              ),
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              color: Colors.white,
-              highlightColor: Colors.orangeAccent,
             ),
-            RaisedButton(
-              onPressed: _goToAddItemsScreen,
-              child: Text(
-                  "Add Items"
-              ),
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              color: Colors.white,
-              highlightColor: Colors.orangeAccent,
+            Image(
+                image: AssetImage("assets/schedule.png"),
+                width: 150,
+                height: 150,
             ),
-            RaisedButton(
-              onPressed: _goToRemoveItemsScreen,
-              child: Text(
-                  "Remove Items"
+            new SizedBox(
+              width: 150.0,
+              //height: 100.0,
+              child: new RaisedButton(
+                onPressed: _goToScheduleScreen,
+                child: Text(
+                    "My Schedule",
+                    style: Theme.of(context).textTheme.title
+                ),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                color: Colors.white,
+                highlightColor: Colors.orangeAccent,
               ),
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              color: Colors.white,
-              highlightColor: Colors.orangeAccent,
             ),
-            RaisedButton(
-              onPressed: _goToSettingsScreen,
-              child: Text(
-                  "Settings"
+            new SizedBox(
+              width: 150.0,
+              //height: 100.0,
+              child: new RaisedButton(
+                onPressed: _goToAddItemsScreen,
+                child: Text(
+                    "Add Events",
+                    style: Theme.of(context).textTheme.title
+                ),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                color: Colors.white,
+                highlightColor: Colors.orangeAccent,
               ),
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              color: Colors.white,
-              highlightColor: Colors.orangeAccent,
+            ),
+            new SizedBox(
+              width: 150.0,
+              //height: 100.0,
+              child: new RaisedButton(
+                onPressed: _goToRemoveItemsScreen,
+                child: Text(
+                    "Remove Events",
+                    style: Theme.of(context).textTheme.title
+                ),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                color: Colors.white,
+                highlightColor: Colors.orangeAccent,
+              ),
+            ),
+            new SizedBox(
+              width: 150.0,
+              //height: 100.0,
+              child: new RaisedButton(
+                onPressed: _goToSettingsScreen,
+                child: Text(
+                    "Settings",
+                    style: Theme.of(context).textTheme.title
+                ),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                color: Colors.white,
+                highlightColor: Colors.orangeAccent,
+              ),
             ),
           ],
         ),
